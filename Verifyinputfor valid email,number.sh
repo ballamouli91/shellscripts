@@ -13,8 +13,6 @@ else
     echo "Email address $1 is invalid."
 fi
 
-# lenght=`echo -n "$phonenumber" | wc -c`
-
 if ( [[ "$2" =~ [0-9] ]] && [[ ${#2} -eq 10 ]] )
 then
    echo "Phonenumber $2 is valid."
