@@ -1,0 +1,16 @@
+#!/bin/bash
+
+printf "enter an alphabet or a number"
+
+read choice
+
+case "$choice" in
+ [a-zA-Z]) echo "Alphabet";;
+ 
+[0-9]) echo "Digit";;
+ 
+?) echo "Special";;
+ 
+*) echo "Invalid";;
+
+esac
