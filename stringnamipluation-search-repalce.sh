@@ -19,7 +19,7 @@ echo ${stringZ/%abc/XYZ}
 
 echo Hello World
 [[ $# -ne 2 ]] && { echo " need exactly two args" >&2 ; exit 1; } 
-for f in "*$1";
+for f in *"$1";
  do
-mv "$f" "${f/#$1/$2}"
+mv "$f" "${f/%$1/$2}"
 done
