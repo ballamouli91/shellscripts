@@ -6,5 +6,6 @@ no_of_words="$(wc -w $fileotread | cut -d' ' -f1)"
 echo " num of words: $no_of_words "
 line_number_to_print="$(( $RANDOM % $no_of_words))"
 echo " line number of the word to be printed : "$line_number_to_print" "
+#Print a specific line from a file
  [[ $line_number_to_print -eq 0 ]] && (( line_number_to_print = $line_number_to_print + 1 ))
 head -n ${line_number_to_print} ${fileotread} | tail -n +${line_number_to_print}
