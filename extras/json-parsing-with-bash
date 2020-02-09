@@ -1,0 +1,20 @@
+
+# references: https://linuxconfig.org/how-to-parse-a-json-file-from-linux-command-line-using-jq
+# https://blog.appoptics.com/jq-json/
+# http://www.compciv.org/recipes/cli/jq-for-parsing-json/
+# https://stackoverflow.com/questions/42877900/dynamically-add-json-object-into-array-with-jq
+# https://cameronnokes.com/blog/working-with-json-in-bash-using-jq/
+# https://unix.stackexchange.com/questions/406387/jq-add-or-update-a-value-with-multiple-arg
+:"
+jq --arg ssid abc --arg pass 123 '.connections[$ssid] = $pass' < file.json
+{
+  "connections": {
+    "abc": "123"
+  }
+}
+Here [$ssid] indexes into .connections with the value of $ssid as the key. The error was at ".$", which is a syntax error, rather than to do with multiple variables.
+Variables aren't substituted in directly as strings in the way they might be in a shell script, but are actual named lexical bindings that have to be used in expression context. The index could be a more complex expression: .connections[$ssid + "X"] = $pass would put an X on the end first and use that as the key.
+https://stackoverflow.com/questions/42877900/dynamically-add-json-object-into-array-with-jq
+https://stackoverflow.com/questions/24942875/change-json-file-by-bash-script/32640163
+https://stackoverflow.com/questions/47374719/jq-not-replacing-json-value-with-parameter
+'
