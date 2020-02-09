@@ -1,0 +1,13 @@
+Write a program to reverse a string “abcdef” --> “fedcba” (preferably NOT using inbuilt functions that come along with the libraries
+#! /bin/bash
+	string="$1" 
+	# you can use  read -p "Enter string:" string
+	reverse_string=""
+	string_length="${#string}"
+	while (( "$string_length">=1 )) 
+	do
+	# ${string:position:length}” extract single single character from string.
+  	   string_length=$(( $string_length -1))
+   	  reverse_string="$reverse_string${string:$string_length:1}"
+	done
+	echo "$reverse_string"
