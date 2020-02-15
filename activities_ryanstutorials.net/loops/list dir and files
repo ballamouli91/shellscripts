@@ -1,0 +1,29 @@
+[[ $# -eq 0 ]] && exit 1
+
+if [[ -d $1 ]]; then 
+echo " valid input "
+else
+echo " we need directory as the argument"
+fi
+
+ls -l --block-size=M $1 > tmp.tmp
+while read line
+do 
+read -n 1 c <<< $line
+
+if [ $c == "-" ] #true if the file is a regular file
+	then
+		((file++)) 
+  size=`echo " ${line}" | cut -d" " --fields="6"`
+  file1=`echo " ${line}" | cut -d" " --fields="10"`
+  echo "size of file $file1 is  $size "
+  fi 
+
+  if [ $c == "d" ]; then
+((dir++))
+dir1=`echo $line | awk '{print $9}'`
+#echo $dir1
+file_count=`ls -1 $dir1 | wc -l`
+echo "files in $dir1 are $file_count"
+  fi
+done < $(pwd)/tmp.tmp
