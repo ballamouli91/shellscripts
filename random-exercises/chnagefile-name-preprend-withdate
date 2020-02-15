@@ -1,0 +1,15 @@
+#Write the shell script that renames all files in the current directory that end in “.jpg” to begin with today’s date in the following format: YYYY-MM-DD. For example, if a picture of my cat was in the current directory and today was October 31,2016 it would change name from “mycat.jpg” to “2016–10–31-mycat.jpg”.
+
+#! /bin/bash                                                                     
+                                                                                 
+if [[ $# -ne 1 ]];                                                               
+then echo " arguments are less then two, please provide minimum two arguments"   
+exit 1
+fi                                                                               
+                                                                                 
+for f in *"$1"; do                                                               
+x=$(date +%F)
+echo "$x"
+# base=$(basename "$f" "$1")                          echo $f
+ mv "$f" "$x-$f"                                                             
+done         
