@@ -1,0 +1,26 @@
+<<'COMMENTS'
+Given a year, report if it is a leap year.
+
+The tricky thing here is that a leap year in the Gregorian calendar occurs:
+
+on every year that is evenly divisible by 4
+  except every year that is evenly divisible by 100
+    unless the year is also evenly divisible by 400
+For example, 1997 is not a leap year, but 1996 is. 1900 is not a leap year, but 2000 is.
+COMMENTS
+
+#!/bin/bash -x
+
+if [ $# -ne 1 ] || [[ ! $1 =~ ^-?[0-9]+$ ]]; then
+    echo "Usage: leap.sh <year>"
+    exit 1
+fi
+
+if [ $(($1 % 4)) -eq 0 ] && [ $(($1 % 100)) -ne 0 ] || [ $(($1 % 400)) -eq 0 ]; then
+
+  echo "$1 is a leap year."
+  exit 0
+fi
+
+echo "$1 is not a leap year."
+
