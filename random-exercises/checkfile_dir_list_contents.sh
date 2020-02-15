@@ -3,6 +3,7 @@
 
 echo “Enter the file path”
 read FILE
+# FILE=$1 #accepts the file or directory name as an argument instead of prompting the user to enter it
 
 if [[ -f $FILE ]]; then
  echo "$FILE is a regular file"
