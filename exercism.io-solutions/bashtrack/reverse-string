@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#check-command
+function check_command {
+  command -v "$1" >/dev/null 2>&1
+}
+
+inputword=$@
+
+if check_command rev; then
+  echo "$inputword" | rev
+else
+  reverse_word=""
+  word_length=${#inputword}
+
+  for (( i = word_length; i >=0; i-- )); do
+    reverse_word+=${inputword:i:1}
+
+  done
+
+  echo "$reverse_word"
+fi
